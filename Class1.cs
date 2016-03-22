@@ -6,40 +6,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StardewModdingAPI.Events;
+using Microsoft.Xna.Framework.Input;
 
-namespace MyFirstMod
-{
-    public class MyfirstMod : Mod
+namespace SocialIncreacer
+{ 
+    public class SocialIncreacer : Mod
     {
-        public override string Name
-        {
-            get
-            { return "MyFirstMod"; }
-        }
+        public static Game1 TheGame => Program.gamePtr;
+        public static Farmer Player => Game1.player;
+        public static SocialConfig ModConfig { get; private set; }
 
-        public override string Authour
-        {
-            get
-            { return "Guy Payne"; }
-        }
-        public override string Version
-        {
-            get
-            { return "0.1"; }
-        }
-        public override string Description
-        {
-            get
-            { return "Not sure yet"; }
-        }
         public override void Entry(params object[] objects)
         {
+            ModConfig = new SocialConfig();
+            ModConfig = (SocialConfig)Config.InitializeConfig(Config.GetBasePath(this), ModConfig);
             TimeEvents.DayOfMonthChanged += Event_ChangedDayOfMonth;
         }
         static void Event_ChangedDayOfMonth(object sender, EventArgs e)
         {
-                
-
+            //((Farmer)Game1.player).changeFriendship(change, Game1.getCharacterFromName(name));
+            if (!ModConfig.decay)
+            {
+                string[] friends = Player.friendships.Keys.ToArray<string>();
+                for (int i = 0; i < friends.Length; i++)
+                {
+                    if (Player.spouse != null && friends[i].Equals(Player.spouse))
+                    {
+                        Player.friendships[friends[i]][0] += ModConfig.baseIncrease + 20;
+                    }
+                    if (Player.friendships[friends[i]][0] < 2500 && !Player.hasTalkedToFriendToday(friends[i]))
+                    {
+                        Player.friendships[friends[i]][0] += ModConfig.baseIncrease;
+                    }
+                    if (Player.friendships[friends[i]][0] < 2500 && Player.hasTalkedToFriendToday(friends[i]))
+                    {
+                        Player.friendships[friends[i]][0] += ModConfig.talkIncrease;
+                    }
+                }
+            }
+        }
+    }
+    public class SocialConfig : Config
+    {
+        //public bool RegenStamina { get; set; }
+        public bool decay { get; set; }
+        public int baseIncrease { get; set; }
+        public int talkIncrease { get; set; }
+        public override Config GenerateBaseConfig(Config baseConfig)
+        {
+            decay = false;
+            baseIncrease = 10;
+            talkIncrease = 50;
+            return this;
         }
     }
 }
