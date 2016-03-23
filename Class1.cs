@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using StardewModdingAPI.Events;
 using Microsoft.Xna.Framework.Input;
 
-namespace SocialIncreacer
+namespace DailyFriendShipIncreacer
 { 
-    public class SocialIncreacer : Mod
+    public class DailyFriendShipIncreacer : Mod
     {
         public static Game1 TheGame => Program.gamePtr;
         public static Farmer Player => Game1.player;
