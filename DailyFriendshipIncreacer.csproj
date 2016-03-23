@@ -7,8 +7,8 @@
     <ProjectGuid>{9AA9E00F-2C31-4A03-8957-AF2E917FCBE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Socialincreacer</RootNamespace>
-    <AssemblyName>Socialincreacer</AssemblyName>
+    <RootNamespace>DailyFriendshipIncreaser</RootNamespace>
+    <AssemblyName>DailyFriendshipIncreaser</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
