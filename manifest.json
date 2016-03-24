@@ -1,7 +1,15 @@
 ﻿{
-    "Name": "DailyFriendshipIncreaser",
-    "Authour": "Guy Payne",
-    "Version": "1.0",
-    "Description": "Allow players to customize friendship increaces daily",
-    "EntryDll": "DailyFriendshipIncreaser.dll"
+  "Name": "DailyFriendshipIncreaser",
+  "Authour": "Guy Payne",
+  "Version": {
+    "MajorVersion": 0,
+    "MinorVersion": 0,
+    "PatchVersion": 0,
+    "Build": ""
+  },
+  "Description": "Allow players to customize friendship increaces daily",
+  "UniqueID": "",
+  "PerSaveConfigs": false,
+  "EntryDll": "DailyFriendshipIncreaser.dll"
 }
+

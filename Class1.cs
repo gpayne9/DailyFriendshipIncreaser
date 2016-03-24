@@ -19,7 +19,7 @@ namespace DailyFriendshipIncreaser
         public override void Entry(params object[] objects)
         {
             ModConfig = new SocialConfig();
-            ModConfig = (SocialConfig)Config.InitializeConfig(Config.GetBasePath(this), ModConfig);
+            ModConfig = ModConfig.InitializeConfig(BaseConfigPath);
             TimeEvents.DayOfMonthChanged += Event_ChangedDayOfMonth;
         }
         static void Event_ChangedDayOfMonth(object sender, EventArgs e)
@@ -52,12 +52,12 @@ namespace DailyFriendshipIncreaser
         public bool decay { get; set; }
         public int baseIncrease { get; set; }
         public int talkIncrease { get; set; }
-        public override Config GenerateBaseConfig(Config baseConfig)
+        public override T GenerateDefaultConfig<T>()
         {
             decay = false;
             baseIncrease = 10;
             talkIncrease = 50;
-            return this;
+            return this as T;
         }
     }
 }
